@@ -12,6 +12,7 @@ import {
 import { Link } from "@heroui/link";
 import clsx from "clsx";
 import NextLink from "next/link";
+import { useState } from "react";
 
 import { ThemeSwitch } from "@/components/ThemeSwitch";
 import { siteConfig } from "@/config/site";
@@ -35,11 +36,20 @@ const MemeLogo = () => (
 );
 
 export const Navbar = () => {
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // Функція для закриття меню
+  const handleMenuItemClick = () => {
+    setIsMenuOpen(false);
+  };
+
   return (
     <HeroUINavbar
       className="bg-gradient-to-r from-blue-100 to-green-100 dark:from-gray-800 dark:to-gray-900 shadow-md rounded-b-xl"
       maxWidth="xl"
       position="sticky"
+      isMenuOpen={isMenuOpen}
+      onMenuOpenChange={setIsMenuOpen}
     >
       <NavbarContent justify="start">
         <NavbarBrand>
@@ -79,6 +89,7 @@ export const Navbar = () => {
               className="text-gray-700 dark:text-gray-200 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
               href={item.href}
               size="lg"
+              onClick={handleMenuItemClick} // Закриваємо меню після кліку
             >
               {item.label}
             </Link>

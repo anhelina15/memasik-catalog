@@ -37,12 +37,25 @@ export default function Home() {
       </div>
 
       {/* Заголовок із градієнтом */}
-      <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-green-500 text-transparent bg-clip-text">
+      <h1
+        className="
+          text-4xl font-bold mb-4 
+          bg-gradient-to-r from-blue-500 to-green-500 text-transparent bg-clip-text 
+          text-center 
+          sm:text-3xl xs:text-2xl
+        "
+      >
         Welcome to Memasik Catalog!
       </h1>
-      <p className="text-lg text-center text-gray-700 dark:text-gray-300">
-        Explore popular memes in a table or list view using the navigation
-        above.
+      <p
+        className="
+          text-lg text-center 
+          text-gray-700 dark:text-gray-300 
+          max-w-md 
+          sm:text-base xs:text-sm
+        "
+      >
+        Explore popular memes in a table or list view using the navigation above.
       </p>
     </div>
   );

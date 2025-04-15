@@ -56,11 +56,11 @@ export const MemeList = ({ initialMemes }: Props) => {
               {meme.name}
             </h3>
           </CardHeader>
-          <CardBody className="p-0">
-            <div className="relative overflow-hidden">
+          <CardBody className="p-0 flex justify-center">
+            <div className="relative flex justify-center overflow-hidden w-full">
               <Image
                 alt={meme.name}
-                className="object-contain w-full h-64 transition-transform duration-300 hover:scale-105"
+                className="object-contain object-center w-full h-64 transition-transform duration-300 hover:scale-105"
                 height={250}
                 src={getImageUrl(meme.imageUrl)}
                 width={300}
