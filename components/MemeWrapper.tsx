@@ -22,19 +22,31 @@ export const MemeWrapper = ({ initialMemes, mode }: Props) => {
     if (savedMemes) {
       try {
         const parsedMemes = JSON.parse(savedMemes);
-
-        setMemes(parsedMemes);
+        if (Array.isArray(parsedMemes) && parsedMemes.length === 0) {
+          setMemes(initialMemes);
+          Cookies.set("memes", JSON.stringify(initialMemes), { expires: 7 });
+        } else {
+          setMemes(parsedMemes);
+        }
       } catch (error) {
         console.error("Error parsing cookies:", error);
         setMemes(initialMemes);
+        Cookies.set("memes", JSON.stringify(initialMemes), { expires: 7 });
       }
+    } else {
+      setMemes(initialMemes);
+      Cookies.set("memes", JSON.stringify(initialMemes), { expires: 7 });
     }
   }, [initialMemes]);
 
-  // Збереження в cookies при зміні memes
   useEffect(() => {
-    Cookies.set("memes", JSON.stringify(memes), { expires: 7 });
-  }, [memes]);
+    if (memes.length === 0) {
+      setMemes(initialMemes);
+      Cookies.set("memes", JSON.stringify(initialMemes), { expires: 7 });
+    } else {
+      Cookies.set("memes", JSON.stringify(memes), { expires: 7 });
+    }
+  }, [memes, initialMemes]);
 
   return mode === "table" ? (
     <MemeTable initialMemes={memes} setMemes={setMemes} />
