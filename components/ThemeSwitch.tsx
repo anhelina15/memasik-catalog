@@ -9,11 +9,13 @@ export const ThemeSwitch = () => {
 
   useEffect(() => {
     const isDarkMode = document.documentElement.classList.contains("dark");
+
     setIsDark(isDarkMode);
   }, []);
 
   const toggleTheme = () => {
     const newIsDark = !isDark;
+
     setIsDark(newIsDark);
     if (newIsDark) {
       document.documentElement.classList.add("dark");
@@ -26,11 +28,17 @@ export const ThemeSwitch = () => {
 
   return (
     <Switch
-      isSelected={isDark}
-      onChange={toggleTheme}
-      thumbIcon={isDark ? <MoonIcon className="w-4 h-4" /> : <SunIcon className="w-4 h-4" />}
       aria-label="Toggle dark mode"
       className="cursor-pointer"
+      isSelected={isDark}
+      thumbIcon={
+        isDark ? (
+          <MoonIcon className="w-4 h-4" />
+        ) : (
+          <SunIcon className="w-4 h-4" />
+        )
+      }
+      onChange={toggleTheme}
     />
   );
 };

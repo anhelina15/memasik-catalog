@@ -1,9 +1,10 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Cookies from "js-cookie";
+
 import { MemeTable } from "@/components/MemeTable";
 import { MemeList } from "@/components/MemeList";
-import Cookies from "js-cookie";
 import { Meme } from "@/data/memes";
 
 type Props = {
@@ -17,9 +18,11 @@ export const MemeWrapper = ({ initialMemes, mode }: Props) => {
   // Синхронізація з cookies при монтуванні
   useEffect(() => {
     const savedMemes = Cookies.get("memes");
+
     if (savedMemes) {
       try {
         const parsedMemes = JSON.parse(savedMemes);
+
         setMemes(parsedMemes);
       } catch (error) {
         console.error("Error parsing cookies:", error);

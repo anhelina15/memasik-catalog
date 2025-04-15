@@ -1,8 +1,16 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { Table, TableHeader, TableBody, TableRow, TableCell, TableColumn } from "@heroui/table";
+import {
+  Table,
+  TableHeader,
+  TableBody,
+  TableRow,
+  TableCell,
+  TableColumn,
+} from "@heroui/table";
 import { Button } from "@heroui/button";
+
 import { MemeModal } from "@/components/MemeModal";
 import { Meme } from "@/data/memes";
 
@@ -17,7 +25,7 @@ export const MemeTable = ({ initialMemes, setMemes }: Props) => {
 
   const handleSave = (updatedMeme: Meme) => {
     setMemes((prev) =>
-      prev.map((meme) => (meme.id === updatedMeme.id ? updatedMeme : meme))
+      prev.map((meme) => (meme.id === updatedMeme.id ? updatedMeme : meme)),
     );
     setSelectedMeme(null);
   };
@@ -35,6 +43,7 @@ export const MemeTable = ({ initialMemes, setMemes }: Props) => {
     if (/^https?:\/\//.test(imageUrl)) {
       return imageUrl;
     }
+
     return baseUrl ? `${baseUrl}${imageUrl}` : imageUrl;
   };
 
@@ -63,10 +72,10 @@ export const MemeTable = ({ initialMemes, setMemes }: Props) => {
               <TableCell>{meme.name}</TableCell>
               <TableCell>
                 <a
-                  href={getImageUrl(meme.imageUrl)} // Використовуємо утиліту
-                  target="_blank"
-                  rel="noopener noreferrer"
                   className="text-blue-500 hover:text-blue-600 transition-colors duration-200 truncate max-w-xs block"
+                  href={getImageUrl(meme.imageUrl)} // Використовуємо утиліту
+                  rel="noopener noreferrer"
+                  target="_blank"
                 >
                   {getImageUrl(meme.imageUrl)}
                   {/* {meme.imageUrl} Відображаємо оригінальний imageUrl */}
@@ -96,8 +105,8 @@ export const MemeTable = ({ initialMemes, setMemes }: Props) => {
       {selectedMeme && (
         <MemeModal
           meme={selectedMeme}
-          onSave={handleSave}
           onClose={() => setSelectedMeme(null)}
+          onSave={handleSave}
         />
       )}
     </>

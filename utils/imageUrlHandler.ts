@@ -5,5 +5,6 @@ export const getImageUrl = (imageUrl: string): string => {
   }
   // Для локальних шляхів додаємо базовий URL
   const baseUrl = typeof window !== "undefined" ? window.location.origin : "";
+
   return `${baseUrl}${imageUrl}`;
 };

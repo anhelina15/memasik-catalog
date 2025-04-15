@@ -1,9 +1,16 @@
 "use client";
 
 import { useState } from "react";
-import { Modal, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/modal";
+import {
+  Modal,
+  ModalContent,
+  ModalHeader,
+  ModalBody,
+  ModalFooter,
+} from "@heroui/modal";
 import { Input } from "@heroui/input";
 import { Button } from "@heroui/button";
+
 import { Meme } from "@/data/memes";
 
 type Props = {
@@ -16,10 +23,15 @@ export const MemeModal = ({ meme, onSave, onClose }: Props) => {
   const [name, setName] = useState(meme.name);
   const [imageUrl, setImageUrl] = useState(meme.imageUrl);
   const [likes, setLikes] = useState(meme.likes);
-  const [errors, setErrors] = useState<{ name?: string; imageUrl?: string; likes?: string }>({});
+  const [errors, setErrors] = useState<{
+    name?: string;
+    imageUrl?: string;
+    likes?: string;
+  }>({});
 
   const validate = () => {
     const newErrors: { name?: string; imageUrl?: string; likes?: string } = {};
+
     if (name.length < 3 || name.length > 100) {
       newErrors.name = "Name must be between 3 and 100 characters";
     }
@@ -31,6 +43,7 @@ export const MemeModal = ({ meme, onSave, onClose }: Props) => {
       newErrors.likes = "Likes must be between 0 and 99";
     }
     setErrors(newErrors);
+
     return Object.keys(newErrors).length === 0;
   };
 
@@ -46,36 +59,31 @@ export const MemeModal = ({ meme, onSave, onClose }: Props) => {
       <ModalContent>
         <ModalHeader>Edit Meme</ModalHeader>
         <ModalBody>
+          <Input fullWidth isDisabled label="ID" value={meme.id.toString()} />
           <Input
-            label="ID"
-            value={meme.id.toString()}
-            isDisabled
             fullWidth
-          />
-          <Input
+            errorMessage={errors.name}
+            isInvalid={!!errors.name}
             label="Name"
             value={name}
             onChange={(e) => setName(e.target.value)}
-            isInvalid={!!errors.name}
-            errorMessage={errors.name}
-            fullWidth
           />
           <Input
+            fullWidth
+            errorMessage={errors.imageUrl}
+            isInvalid={!!errors.imageUrl}
             label="Image URL"
             value={imageUrl}
             onChange={(e) => setImageUrl(e.target.value)}
-            isInvalid={!!errors.imageUrl}
-            errorMessage={errors.imageUrl}
-            fullWidth
           />
           <Input
+            fullWidth
+            errorMessage={errors.likes}
+            isInvalid={!!errors.likes}
             label="Likes"
             type="number"
             value={likes.toString()}
             onChange={(e) => setLikes(Number(e.target.value))}
-            isInvalid={!!errors.likes}
-            errorMessage={errors.likes}
-            fullWidth
           />
         </ModalBody>
         <ModalFooter>

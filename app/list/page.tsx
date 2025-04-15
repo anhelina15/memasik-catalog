@@ -1,6 +1,7 @@
+import { cookies } from "next/headers";
+
 import { MemeWrapper } from "@/components/MemeWrapper";
 import { initialMemes, Meme } from "@/data/memes";
-import { cookies } from "next/headers";
 
 export default async function ListPage() {
   const cookieStore = await cookies();
