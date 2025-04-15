@@ -1,3 +1,39 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.animate-fadeIn {
+  animation: fadeIn 0.5s ease-out forwards;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* globals.css */
+/* .table-row-hover:nth-child(even) {
+  background-color: #f9fafb;
+}
+
+.dark .table-row-hover:nth-child(even) {
+  background-color: #1f2937;
+} */
+
+/* globals.css */
+.table-row-hover:hover {
+  background-color: #f1f5f9;
+  /* Світло-сірий фон для світлої теми */
+}
+
+.dark .table-row-hover:hover {
+  background-color: #374151;
+  /* Темно-сірий фон для темної теми */
+}

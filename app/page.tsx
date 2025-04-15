@@ -1,56 +1,41 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
-
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
-
 export default function Home() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </div>
+    <div className="p-0 m-0 flex flex-col items-center justify-center min-h-[60vh]">
+      {/* Ілюстрація мемного персонажа */}
+      <div className="mb-6 animate-bounce">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          viewBox="0 0 200 200"
+          className="w-32 h-32 drop-shadow-lg"
+        >
+          {/* Trollface (спрощена SVG-ілюстрація) */}
+          <circle cx="100" cy="100" r="80" fill="#fff" stroke="#000" strokeWidth="5" />
+          <path
+            d="M60 80 Q70 60 100 80 Q130 60 140 80"
+            fill="none"
+            stroke="#000"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+          <circle cx="80" cy="110" r="10" fill="#000" />
+          <circle cx="120" cy="110" r="10" fill="#000" />
+          <path
+            d="M70 140 Q100 160 130 140"
+            fill="none"
+            stroke="#000"
+            strokeWidth="5"
+            strokeLinecap="round"
+          />
+        </svg>
       </div>
 
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
+      {/* Заголовок із градієнтом */}
+      <h1 className="text-4xl font-bold mb-4 bg-gradient-to-r from-blue-500 to-green-500 text-transparent bg-clip-text">
+        Welcome to Memasik Catalog!
+      </h1>
+      <p className="text-lg text-center text-gray-700 dark:text-gray-300">
+        Explore popular memes in a table or list view using the navigation above.
+      </p>
+    </div>
   );
 }
